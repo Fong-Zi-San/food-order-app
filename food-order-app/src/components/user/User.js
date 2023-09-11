@@ -9,7 +9,7 @@ function User() {
   return (
     <>
       <Cart />
-      <Box sx={{pb: "15rem"}} className="user-page">
+      <Box sx={{pb: "15rem"}}>
         <Grid container sx={{mb: 5}}>
           <Banner />
           <AboutUs />

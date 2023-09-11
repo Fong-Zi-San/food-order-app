@@ -140,7 +140,7 @@ function Dashboard() {
                         onClick={() => deleteOrderHandler(orderId)}
                         divider
                       >
-                        Completed order
+                        Order completed
                       </MenuItem>
                       <MenuItem onClick={() => deleteOrderHandler(orderId)}>
                         Cancel order
@@ -170,7 +170,6 @@ function Dashboard() {
           overflowY: "auto",
           maxHeight: {xs: "70vh", sm: "100%"},
         }}
-        className="dashboard-content"
       >
         {!orders ? <Typography>No orders available</Typography> : renderOrders}
       </Grid>

@@ -24,7 +24,6 @@ export default function CartModal() {
   function ModalContainer({children}) {
     return (
       <Box
-        className="modal-container"
         sx={{
           height: "100vh",
           zIndex: 999,
@@ -38,7 +37,6 @@ export default function CartModal() {
         }}
       >
         <Stack
-          className="modal"
           direction="column"
           spacing={1}
           sx={{
@@ -55,7 +53,6 @@ export default function CartModal() {
             direction="row"
             justifyContent="space-between"
             alignItems="center"
-            className="cart-header"
           >
             <Typography variant="h5">Cart</Typography>
             <IconButton onClick={toggleModal}>
@@ -74,12 +71,11 @@ export default function CartModal() {
       const formattedPrice = parseFloat(price).toFixed(2);
       return (
         <Fragment key={id}>
-          <Stack sx={{borderBottom: "2px solid #ebe1d9"}} className="cart-item">
+          <Stack sx={{borderBottom: "2px solid #ebe1d9"}}>
             <Grid
               container
               direction="row"
               justifyContent="space-between"
-              className="cart-item-container"
               sx={{py: 1}}
             >
               <Grid item>

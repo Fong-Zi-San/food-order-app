@@ -152,7 +152,6 @@ function AddItemForm() {
               id="img"
               type="file"
               accept="image/*"
-              className="image-input"
               onChange={handleFileChange}
               style={{fontFamily: "Bree Serif", fontSize: "1rem"}}
             />

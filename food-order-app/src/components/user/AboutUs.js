@@ -52,7 +52,6 @@ function AboutUs() {
         <img
           src={brownies}
           alt="brownies-galore"
-          className="brownies-image"
           style={{display: "block", maxWidth: "100%", maxHeight: "100%"}}
         />
       </Grid>
