@@ -1,18 +1,17 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useRef} from "react";
 import {Stack, TextField, Box, Alert, Fade} from "@mui/material";
 import CustomButton from "../customization/CustomButton";
 import {itemsContext} from "../context/itemsContext";
 
 function AddItemForm() {
   const {itemsState, addItemHandler, toggleForm} = useContext(itemsContext);
-
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [nameInputError, setNameInputError] = useState(false);
   const [descInputError, setDescInputError] = useState(false);
+  const imageInputRef = useRef(null);
 
   //validation check to ensure name length is ≤20
   const maxNameLength = 20;
@@ -39,58 +38,33 @@ function AddItemForm() {
     setDesc("");
     setPrice("");
     setImage(null);
+    if (imageInputRef) {
+      imageInputRef.current.value = null;
+    }
   };
 
-  const fileReader = new FileReader();
-  let base64Image = null;
-  fileReader.onload = function (e) {
-    base64Image = e.target.result;
+  const handleImageChange = (e) => {
+    if (e.target.files.length === 1) {
+      const selectedImage = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Image = e.target.result;
+        setImage(base64Image);
+      };
+      reader.readAsDataURL(selectedImage);
+    }
   };
 
-  let PROJECT_ID = "dlc2edjl";
-  let DATASET = "production";
-  let URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/assets/images/${DATASET}`;
-
-  const addItem = async (e) => {
+  const addItem = (e) => {
     e.preventDefault();
-    if (!nameInputError) {
-      const formData = new FormData();
-      formData.append("format", "json");
-      if (base64Image) {
-        formData.append("source", base64Image);
-      }
-      try {
-        const response = await fetch(URL, {
-          method: "POST",
-          body: formData,
-        });
-        if (response.ok) {
-          const imageData = await response.json();
-          console.log("Image uploaded:", response);
-          const formattedPrice = Number(price).toFixed(2);
-          addItemHandler({
-            name,
-            desc,
-            price: Number(formattedPrice),
-            imageUrl: imageData.image.url,
-          });
-          clearForm();
-        } else {
-          console.error("Image upload failed.");
-        }
-      } catch (error) {
-        console.error("Error uploading image:", error);
-      }
-    }
-  };
-
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      fileReader.readAsDataURL(selectedFile);
-    } else {
-      base64Image = null;
-    }
+    const formattedPrice = Number(price).toFixed(2);
+    addItemHandler({
+      name,
+      desc,
+      price: Number(formattedPrice),
+      image: image,
+    });
+    clearForm();
   };
 
   return (
@@ -126,7 +100,7 @@ function AddItemForm() {
                 setName(e.target.value);
                 validateName(e.target.value);
               }}
-            ></TextField>
+            />
             <TextField
               required
               multiline
@@ -137,7 +111,7 @@ function AddItemForm() {
                 setDesc(e.target.value);
                 validateDesc(e.target.value);
               }}
-            ></TextField>
+            />
             <TextField
               required
               variant="outlined"
@@ -145,15 +119,15 @@ function AddItemForm() {
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-            ></TextField>
+            />
             <input
-              // required
+              required
               name="img"
               id="img"
               type="file"
               accept="image/*"
-              className="image-input"
-              onChange={handleFileChange}
+              ref={imageInputRef}
+              onChange={handleImageChange}
               style={{fontFamily: "Bree Serif", fontSize: "1rem"}}
             />
             <Stack direction="row" spacing={1}>

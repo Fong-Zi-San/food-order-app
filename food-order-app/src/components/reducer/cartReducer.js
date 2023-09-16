@@ -6,6 +6,28 @@ export const initialCartState = {
   checkoutSuccessful: false,
 };
 
+// Helper function to find item by id
+const findItemById = (cartItems, itemId) => {
+  return cartItems.find((item) => item.id === itemId);
+};
+
+// Helper function to update totalQuantity and totalPrice
+const updateTotal = (cartItems, itemPrice, quantityChange) => {
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  return {
+    totalQuantity: totalQuantity + quantityChange,
+    totalPrice: totalPrice + itemPrice * quantityChange,
+  };
+};
+
 export const cartReducer = (cartState, action) => {
   switch (action.type) {
     case "TOGGLED_MODAL":
@@ -18,30 +40,27 @@ export const cartReducer = (cartState, action) => {
       return {
         ...cartState,
         cartItems: [...cartState.cartItems, action.payload],
-        totalQuantity: cartState.totalQuantity + 1,
-        totalPrice: cartState.totalPrice + action.payload.price,
+        ...updateTotal(cartState.cartItems, action.payload.price, 1),
       };
     case "REMOVED_ITEM":
-      const removedItem = cartState.cartItems.find(
-        (item) => item.id === action.payload
-      );
+      const removedItem = findItemById(cartState.cartItems, action.payload);
       if (removedItem) {
         return {
           ...cartState,
           cartItems: cartState.cartItems.filter(
             (item) => item.id !== action.payload
           ),
-          totalQuantity: cartState.totalQuantity - removedItem.quantity,
-          totalPrice:
-            cartState.totalPrice - removedItem.price * removedItem.quantity,
+          ...updateTotal(
+            cartState.cartItems,
+            removedItem.price,
+            -removedItem.quantity
+          ),
         };
       } else {
         return cartState;
       }
     case "INCREASED_QUANTITY":
-      const increasedItem = cartState.cartItems.find(
-        (item) => item.id === action.payload
-      );
+      const increasedItem = findItemById(cartState.cartItems, action.payload);
       if (increasedItem) {
         return {
           ...cartState,
@@ -50,16 +69,13 @@ export const cartReducer = (cartState, action) => {
               ? {...item, quantity: item.quantity + 1}
               : item
           ),
-          totalQuantity: cartState.totalQuantity + 1,
-          totalPrice: cartState.totalPrice + increasedItem.price,
+          ...updateTotal(cartState.cartItems, increasedItem.price, 1),
         };
       } else {
         return cartState;
       }
     case "DECREASED_QUANTITY":
-      const decreasedItem = cartState.cartItems.find(
-        (item) => item.id === action.payload
-      );
+      const decreasedItem = findItemById(cartState.cartItems, action.payload);
       if (decreasedItem) {
         return {
           ...cartState,
@@ -68,8 +84,7 @@ export const cartReducer = (cartState, action) => {
               ? {...item, quantity: item.quantity - 1}
               : item
           ),
-          totalQuantity: cartState.totalQuantity - 1,
-          totalPrice: cartState.totalPrice - decreasedItem.price,
+          ...updateTotal(cartState.cartItems, decreasedItem.price, -1),
         };
       } else {
         return cartState;

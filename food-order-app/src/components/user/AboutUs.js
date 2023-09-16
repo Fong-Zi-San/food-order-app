@@ -6,6 +6,7 @@ function AboutUs() {
   return (
     <Grid
       container
+      id="aboutus"
       direction="row"
       display="flex"
       justifyContent="center"
@@ -30,7 +31,7 @@ function AboutUs() {
           </Typography>
           <Link
             color="secondary"
-            href="#"
+            href="#menu"
             sx={{fontFamily: "Bree Serif", fontSize: {xs: "18px", md: "22px"}}}
           >
             Browse our brownies selection →
@@ -52,7 +53,6 @@ function AboutUs() {
         <img
           src={brownies}
           alt="brownies-galore"
-          className="brownies-image"
           style={{display: "block", maxWidth: "100%", maxHeight: "100%"}}
         />
       </Grid>

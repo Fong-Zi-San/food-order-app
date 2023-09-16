@@ -3,9 +3,7 @@ import {initialItemsState, itemsReducer} from "../reducer/itemsReducer";
 import {v4 as uuidv4} from "uuid";
 import api from "../../api/items";
 
-export const itemsContext = createContext({
-  switchPage: false,
-});
+export const itemsContext = createContext({});
 
 export function ItemsContextProvider({children}) {
   const [itemsState, dispatch] = useReducer(itemsReducer, initialItemsState);
@@ -18,17 +16,17 @@ export function ItemsContextProvider({children}) {
     ITEM_DELETED: "ITEM_DELETED",
   };
 
-  //toggle between User or Admin page
+  // Toggle between User or Admin page
   const togglePage = () => {
     dispatch({type: ACTION_TYPE.SWITCHED_PAGE});
   };
 
-  //toggle AddItemForm
+  // Toggle AddItemForm
   const toggleForm = () => {
     dispatch({type: ACTION_TYPE.TOGGLED_FORM});
   };
 
-  //Add item to menu
+  // Add item to menu
   const addItemHandler = async (item) => {
     const request = {
       id: uuidv4(),
@@ -38,14 +36,14 @@ export function ItemsContextProvider({children}) {
     dispatch({type: ACTION_TYPE.ITEM_ADDED, payload: response.data});
   };
 
-  //Retrieve menu items
+  // Retrieve menu items
   const retrieveItems = async () => {
     const response = await api.get("/items");
     if (response.data)
       dispatch({type: ACTION_TYPE.ITEMS_RETRIEVED, payload: response.data});
   };
 
-  //Delete menu item
+  // Delete menu item
   const deleteItemHandler = async (id) => {
     await api.delete(`/items/${id}`);
     dispatch({type: ACTION_TYPE.ITEM_DELETED, payload: id});

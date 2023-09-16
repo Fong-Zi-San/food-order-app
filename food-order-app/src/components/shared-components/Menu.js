@@ -22,12 +22,12 @@ function Menu() {
   }, []);
 
   const renderMenuItems = itemsState.items.map((item) => {
-    const {id, name, desc, price, imageUrl} = item;
+    const {id, name, desc, price, image} = item;
     const formattedPrice = parseFloat(price).toFixed(2);
     return (
       <Grid item key={id}>
-        <CustomCard sx={{height: 390, width: 300}}>
-          <CardMedia component="img" height="230" image={imageUrl} alt={name} />
+        <CustomCard sx={{height: 400, width: 300}}>
+          <CardMedia component="img" height="230" image={image} alt={name} />
           <Stack direction="row" justifyContent="space-between">
             <CardContent>
               <Stack spacing={1}>
@@ -58,19 +58,16 @@ function Menu() {
   });
 
   return (
-    <Grid container spacing={2} justifyContent="center" sx={{mx: 2}}>
-      <Grid item textAlign="center" sx={{pb: 5}}>
-        <Typography variant="h4" fontFamily="Lobster">
-          Menu
-        </Typography>
+    <Grid container spacing={2} justifyContent="center" id="menu">
+      <Grid item>
+        <Grid container textAlign="center" sx={{pb: 5}}>
+          <Typography variant="h4" fontFamily="Lobster">
+            Menu
+          </Typography>
+        </Grid>
       </Grid>
-      <Grid item justifyContent="center" alignItems="center">
-        <Grid
-          container
-          spacing={10}
-          justifyContent="flex-start"
-          className="menu-items-container"
-        >
+      <Grid item>
+        <Grid container spacing={10} justifyContent="center">
           {renderMenuItems}
         </Grid>
       </Grid>

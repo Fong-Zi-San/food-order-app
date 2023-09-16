@@ -4,7 +4,6 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import CustomButton from "../customization/CustomButton";
 import {cartContext} from "../context/cartContext";
 
@@ -24,7 +23,6 @@ export default function CartModal() {
   function ModalContainer({children}) {
     return (
       <Box
-        className="modal-container"
         sx={{
           height: "100vh",
           zIndex: 999,
@@ -38,13 +36,12 @@ export default function CartModal() {
         }}
       >
         <Stack
-          className="modal"
           direction="column"
           spacing={1}
           sx={{
             width: "55%",
             minHeight: "12%",
-            maxHeight: "35%",
+            maxHeight: "40%",
             p: 2,
             backgroundColor: "#d7a27e",
             border: "2px solid #ebe1d9",
@@ -55,7 +52,6 @@ export default function CartModal() {
             direction="row"
             justifyContent="space-between"
             alignItems="center"
-            className="cart-header"
           >
             <Typography variant="h5">Cart</Typography>
             <IconButton onClick={toggleModal}>
@@ -74,12 +70,11 @@ export default function CartModal() {
       const formattedPrice = parseFloat(price).toFixed(2);
       return (
         <Fragment key={id}>
-          <Stack sx={{borderBottom: "2px solid #ebe1d9"}} className="cart-item">
+          <Stack sx={{borderBottom: "2px solid #ebe1d9"}}>
             <Grid
               container
               direction="row"
               justifyContent="space-between"
-              className="cart-item-container"
               sx={{py: 1}}
             >
               <Grid item>
@@ -137,8 +132,7 @@ export default function CartModal() {
               </CustomButton>
               <CustomButton
                 onClick={() => checkoutHandler({cartState})}
-                sx={{borderWidth: 3, flexGrow: 5}}
-                startIcon={<ShoppingCartCheckoutIcon />}
+                sx={{flexGrow: 5}}
               >
                 Checkout
               </CustomButton>
@@ -154,10 +148,8 @@ export default function CartModal() {
   }
 
   return (
-    // <Grow in={cartState.showModal} mountOnEnter unmountOnExit>
     <ModalContainer>
       <ModalContent />
     </ModalContainer>
-    // </Grow>
   );
 }

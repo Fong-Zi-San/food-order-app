@@ -45,7 +45,7 @@ function Dashboard() {
     }));
   };
 
-  //Complete/cancel order options delete the order for now, but can be further modify for other functions
+  // Complete/cancel order options delete the order for now, but can be further modified for other functions in the future
   const deleteOrderHandler = (orderId) => {
     const updatedOrders = orders.filter((order) => {
       return order.orderId !== orderId;
@@ -140,7 +140,7 @@ function Dashboard() {
                         onClick={() => deleteOrderHandler(orderId)}
                         divider
                       >
-                        Completed order
+                        Order completed
                       </MenuItem>
                       <MenuItem onClick={() => deleteOrderHandler(orderId)}>
                         Cancel order
@@ -170,7 +170,6 @@ function Dashboard() {
           overflowY: "auto",
           maxHeight: {xs: "70vh", sm: "100%"},
         }}
-        className="dashboard-content"
       >
         {!orders ? <Typography>No orders available</Typography> : renderOrders}
       </Grid>

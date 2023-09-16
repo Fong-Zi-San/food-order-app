@@ -48,44 +48,8 @@ function Cart() {
         </Toolbar>
       </AppBar>
       {cartState.showModal &&
-        createPortal(
-          // <Grow in={cartState.showModal} mountOnEnter unmountOnExit>
-          <CartModal />,
-          // </Grow>
-          document.getElementById("modals")
-        )}
+        createPortal(<CartModal />, document.getElementById("modals"))}
     </Fragment>
-
-    // Alternative way without Appbar
-    // <>
-    //   <CustomButton
-    //     onClick={toggleModal}
-    //     sx={{
-    //       borderRadius: 100,
-    //       position: "fixed",
-    //       top: 10,
-    //       right: 30,
-    //       height: 50,
-    //       px: 3,
-    //       zIndex: 1000,
-    //     }}
-    //   >
-    //     <Stack direction="row" alignItems="center" spacing={1}>
-    //       <ShoppingCartIcon />
-    //       <Typography>Your cart</Typography>
-    //       <Box
-    //         sx={{
-    //           backgroundColor: "#ebe1d9",
-    //           borderRadius: 100,
-    //           py: 0.3,
-    //           px: 1.3,
-    //         }}
-    //       >
-    //         <Typography>5</Typography>
-    //       </Box>
-    //     </Stack>
-    //   </CustomButton>
-    // </>
   );
 }
 
