@@ -1,7 +1,3 @@
-Installation(s) required:
-axios - npm install axios
-MUI - npm install @mui/material @emotion/react @emotion/styled
-
-How to use?
+# How to use?
 Start the server-api along with food-order-app.
 Menu items are stored in the mock server.

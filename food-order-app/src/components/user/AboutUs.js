@@ -6,6 +6,7 @@ function AboutUs() {
   return (
     <Grid
       container
+      id="aboutus"
       direction="row"
       display="flex"
       justifyContent="center"

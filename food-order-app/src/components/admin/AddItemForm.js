@@ -3,6 +3,10 @@ import {Stack, TextField, Box, Alert, Fade} from "@mui/material";
 import CustomButton from "../customization/CustomButton";
 import {itemsContext} from "../context/itemsContext";
 
+let PROJECT_ID = "dlc2edjl";
+let DATASET = "production";
+let URL = `https://${PROJECT_ID}.api.sanity.io/assets/images/${DATASET}`;
+
 function AddItemForm() {
   const {itemsState, addItemHandler, toggleForm} = useContext(itemsContext);
 
@@ -46,10 +50,6 @@ function AddItemForm() {
   fileReader.onload = function (e) {
     base64Image = e.target.result;
   };
-
-  let PROJECT_ID = "dlc2edjl";
-  let DATASET = "production";
-  let URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/assets/images/${DATASET}`;
 
   const addItem = async (e) => {
     e.preventDefault();
