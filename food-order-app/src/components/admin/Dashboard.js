@@ -45,7 +45,7 @@ function Dashboard() {
     }));
   };
 
-  //Complete/cancel order options delete the order for now, but can be further modify for other functions
+  // Complete/cancel order options delete the order for now, but can be further modified for other functions in the future
   const deleteOrderHandler = (orderId) => {
     const updatedOrders = orders.filter((order) => {
       return order.orderId !== orderId;

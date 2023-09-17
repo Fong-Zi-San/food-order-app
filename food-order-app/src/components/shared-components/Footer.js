@@ -20,7 +20,6 @@ function Footer() {
         position: "absolute",
         bottom: 0,
         height: "15rem",
-        // width: "100vw",
         backgroundColor: "#847c74",
       }}
     >

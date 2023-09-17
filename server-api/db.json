@@ -1,32 +1,67 @@
 {
   "items": [
     {
-      "id": "fd0a8eb8-5591-4d0e-912b-4f651875bafe",
-      "name": "Brownie1",
-      "desc": "aaa",
-      "price": 1,
-      "imageUrl": "https://img.taste.com.au/gOpVgvz8/taste/2016/11/classic-chewy-brownie-102727-1.jpeg"
+      "id": "c09d7323-7c75-44c3-ac21-81fb1108f7e2",
+      "name": "Sea salt brownies",
+      "desc": "Classic brownies topped with sea salt.",
+      "price": 14,
+      "imageUrl": "https://i.ibb.co/MCXp0L1/sea-salt.jpg"
     },
     {
-      "id": "23a455c7-3c67-4ce1-bd4f-c9d9b7a49acc",
-      "name": "Brownie2",
-      "desc": "aaa",
-      "price": 2,
-      "imageUrl": "https://img.taste.com.au/gOpVgvz8/taste/2016/11/classic-chewy-brownie-102727-1.jpeg"
+      "id": "f805b774-c7a3-45a5-baf6-69565fcc59b0",
+      "name": "Biscoff brownies",
+      "desc": "Rich Biscoff cookies meet fudgy brownies.",
+      "price": 15,
+      "imageUrl": "https://i.ibb.co/c3pbkWx/biscoff.jpg"
     },
     {
-      "id": "613842b4-606c-4d83-bfaf-483f25161cce",
-      "name": "Brownie3",
-      "desc": "aaa",
-      "price": 3,
-      "imageUrl": "https://img.taste.com.au/gOpVgvz8/taste/2016/11/classic-chewy-brownie-102727-1.jpeg"
+      "id": "3f559248-fc26-43fd-9bde-25746d95f659",
+      "name": "Blondies",
+      "desc": "Butterscotch and white chocolate heaven.",
+      "price": 14,
+      "imageUrl": "https://i.ibb.co/fdFJmJX/blondies.jpg"
     },
     {
-      "id": "de74a718-ff02-4efa-b14a-7a3623e75fa7",
-      "name": "Brownie4",
-      "desc": "aaa",
-      "price": 4,
-      "imageUrl": "https://img.taste.com.au/gOpVgvz8/taste/2016/11/classic-chewy-brownie-102727-1.jpeg"
+      "id": "526b17cb-a375-46ab-afd5-4ecd82937dd1",
+      "name": "Matcha brownies",
+      "desc": "Matcha green tea and chocolate fusion.",
+      "price": 16,
+      "imageUrl": "https://i.ibb.co/bWLDFJG/matcha.jpg"
+    },
+    {
+      "id": "fe4e3ebe-7402-4cc1-9c61-5757fec4106d",
+      "name": "Oreo brownies",
+      "desc": "Gooey brownies with Oreo chunks.",
+      "price": 15,
+      "imageUrl": "https://i.ibb.co/6HfKRqn/oreo.jpg"
+    },
+    {
+      "id": "5fa2e27b-e86d-47f6-b1b3-67d7d0e0e8d8",
+      "name": "Peppermint brownies",
+      "desc": "Freshness and chocolate in every bite.",
+      "price": 16,
+      "imageUrl": "https://i.ibb.co/nm8pnm3/peppermint.jpg"
+    },
+    {
+      "id": "8b1d9140-09e9-49ba-ba8d-73df5d12cb2c",
+      "name": "Red velvet brownies",
+      "desc": "Luscious brownies with red velvet charm.",
+      "price": 15,
+      "imageUrl": "https://i.ibb.co/RCGbV4s/red-velvet.jpg"
+    },
+    {
+      "id": "522baf2a-163f-40e4-abf6-766a22ea71d2",
+      "name": "S'mores brownies",
+      "desc": "Rich cocoa and fluffy, toasted marshmallows.",
+      "price": 16,
+      "imageUrl": "https://i.ibb.co/4sYYYD9/smores.jpg"
+    },
+    {
+      "id": "13898837-a270-4e99-aba9-cdd76334ae08",
+      "name": "Pistachio blondies",
+      "desc": "Perfect for pistachio lovers.",
+      "price": 17,
+      "imageUrl": "https://i.ibb.co/th2FQkb/pistachio-cropped.jpg"
     }
   ]
 }

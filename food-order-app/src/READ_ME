@@ -1,3 +1,7 @@
 # How to use?
-Start the server-api along with food-order-app.
-Menu items are stored in the mock server.
+
+1. Navigate to food-order-app and npm start
+2. Navigate to server-api and npm start
+3. Names, descriptions, and prices of menu items are stored in the mock server.
+4. Images of menu items are stored in an online image hosting service - https://imgbb.com/
+5. API key is included in this project submission to demonstrate how menu items will look like

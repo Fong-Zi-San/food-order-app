@@ -1,6 +1,6 @@
 import React from "react";
 import {Typography, Grid, Stack, Link} from "@mui/material";
-import brownies from "../../images/aboutus-brownie1.jpg";
+import brownies from "../../images/aboutus-brownie.jpg";
 
 function AboutUs() {
   return (
@@ -31,7 +31,7 @@ function AboutUs() {
           </Typography>
           <Link
             color="secondary"
-            href="#"
+            href="#menu"
             sx={{fontFamily: "Bree Serif", fontSize: {xs: "18px", md: "22px"}}}
           >
             Browse our brownies selection →

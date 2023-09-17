@@ -150,10 +150,8 @@ export default function CartModal() {
   }
 
   return (
-    // <Grow in={cartState.showModal} mountOnEnter unmountOnExit>
     <ModalContainer>
       <ModalContent />
     </ModalContainer>
-    // </Grow>
   );
 }
