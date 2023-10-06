@@ -1,18 +1,20 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useRef} from "react";
+import axios from "axios";
 import {Stack, TextField, Box, Alert, Fade} from "@mui/material";
 import CustomButton from "../customization/CustomButton";
 import {itemsContext} from "../context/itemsContext";
 
+let URL = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_API_KEY}`;
+
 function AddItemForm() {
   const {itemsState, addItemHandler, toggleForm} = useContext(itemsContext);
-
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [nameInputError, setNameInputError] = useState(false);
   const [descInputError, setDescInputError] = useState(false);
+  const imageInputRef = useRef(null);
 
   //validation check to ensure name length is ≤20
   const maxNameLength = 20;
@@ -39,40 +41,29 @@ function AddItemForm() {
     setDesc("");
     setPrice("");
     setImage(null);
+    if (imageInputRef) {
+      imageInputRef.current.value = null;
+    }
   };
-
-  const fileReader = new FileReader();
-  let base64Image = null;
-  fileReader.onload = function (e) {
-    base64Image = e.target.result;
-  };
-
-  let PROJECT_ID = "dlc2edjl";
-  let DATASET = "production";
-  let URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/assets/images/${DATASET}`;
 
   const addItem = async (e) => {
     e.preventDefault();
+
     if (!nameInputError) {
       const formData = new FormData();
-      formData.append("format", "json");
-      if (base64Image) {
-        formData.append("source", base64Image);
-      }
+      formData.append("image", image);
+
       try {
-        const response = await fetch(URL, {
-          method: "POST",
-          body: formData,
-        });
-        if (response.ok) {
-          const imageData = await response.json();
+        const response = await axios.post(URL, formData);
+        if (response?.status === 200) {
+          const imageData = response?.data?.data?.display_url;
           console.log("Image uploaded:", response);
           const formattedPrice = Number(price).toFixed(2);
           addItemHandler({
             name,
             desc,
             price: Number(formattedPrice),
-            imageUrl: imageData.image.url,
+            imageUrl: imageData,
           });
           clearForm();
         } else {
@@ -86,11 +77,7 @@ function AddItemForm() {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      fileReader.readAsDataURL(selectedFile);
-    } else {
-      base64Image = null;
-    }
+    setImage(selectedFile);
   };
 
   return (
@@ -126,7 +113,7 @@ function AddItemForm() {
                 setName(e.target.value);
                 validateName(e.target.value);
               }}
-            ></TextField>
+            />
             <TextField
               required
               multiline
@@ -137,7 +124,7 @@ function AddItemForm() {
                 setDesc(e.target.value);
                 validateDesc(e.target.value);
               }}
-            ></TextField>
+            />
             <TextField
               required
               variant="outlined"
@@ -145,14 +132,14 @@ function AddItemForm() {
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-            ></TextField>
+            />
             <input
-              // required
+              required
               name="img"
               id="img"
               type="file"
               accept="image/*"
-              className="image-input"
+              ref={imageInputRef}
               onChange={handleFileChange}
               style={{fontFamily: "Bree Serif", fontSize: "1rem"}}
             />

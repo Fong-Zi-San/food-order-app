@@ -35,7 +35,7 @@ function Banner() {
           >
             Savour the Bliss, One Brownie at a Time!
           </Typography>
-          <CustomButton
+          <CustomButton href="#aboutus"
             sx={{
               borderRadius: 100,
               p: 1.5,

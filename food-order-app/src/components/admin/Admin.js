@@ -24,7 +24,6 @@ function Admin() {
         md={4}
         lg={3}
         xl={3}
-        className="dashboard-container"
         sx={{backgroundColor: "#c0b8b0"}}
       >
         <Dashboard />
@@ -40,7 +39,6 @@ function Admin() {
         display="flex"
         flexDirection="column"
         sx={{mb: 5}}
-        className="form-menu-container"
       >
         {itemsState.showForm ? (
           <AddItemForm />

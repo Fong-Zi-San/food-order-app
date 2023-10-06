@@ -26,7 +26,7 @@ function Menu() {
     const formattedPrice = parseFloat(price).toFixed(2);
     return (
       <Grid item key={id}>
-        <CustomCard sx={{height: 390, width: 300}}>
+        <CustomCard sx={{height: 400, width: 300}}>
           <CardMedia component="img" height="230" image={imageUrl} alt={name} />
           <Stack direction="row" justifyContent="space-between">
             <CardContent>
@@ -58,21 +58,16 @@ function Menu() {
   });
 
   return (
-    <Grid container spacing={2} justifyContent="center" sx={{mx: 2}}>
-      <Grid item textAlign="center" sx={{pb: 5}}>
-        <Typography variant="h4" fontFamily="Lobster">
-          Menu
-        </Typography>
-      </Grid>
-      <Grid item justifyContent="center" alignItems="center">
-        <Grid
-          container
-          spacing={10}
-          justifyContent="flex-start"
-          className="menu-items-container"
-        >
-          {renderMenuItems}
+    <Grid container spacing={2} justifyContent="center" id="menu">
+      <Grid item>
+        <Grid container textAlign="center" sx={{pb: 5}}>
+          <Typography variant="h4" fontFamily="Lobster">
+            Menu
+          </Typography>
         </Grid>
+      </Grid>
+      <Grid item container spacing={10} justifyContent="center">
+        {renderMenuItems}
       </Grid>
     </Grid>
   );
